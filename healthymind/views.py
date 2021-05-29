@@ -96,21 +96,19 @@ def readblog(request, blogid):
 @csrf_exempt
 def blog(request):
     if request.method == 'POST':
-        if request.user.is_authenticated:
-            data = json.loads(request.body)
-            header = data.get('header')
-            shortdesc = data.get('shortdesc')
-            blogdata = data.get('blogdata')
-            new = Storeblog(
-                owner= request.user,
-                header=  header,
-                short= shortdesc,
-                data= blogdata
-            )
-            new.save()
-            return JsonResponse({"message": "Published."})
-        else:
-            return JsonResponse({"message": "Login first to publish blog"})
+        data = json.loads(request.body)
+        header = data.get('header')
+        shortdesc = data.get('shortdesc')
+        blogdata = data.get('blogdata')
+        new = Storeblog(
+            owner= request.user,
+            header=  header,
+            short= shortdesc,
+            data= blogdata
+        )
+        new.save()
+        return JsonResponse({"message": "Published."})
+       
     posts = Storeblog.objects.all().order_by("-id")
     return JsonResponse([post.serialize() for post in posts], safe=False)
 
