@@ -1508,7 +1508,7 @@ section {
 }
 
 #img1 {display:block !important;}
-#img2 {display:none !important}
+#img2 {display:none !important;}
 
 @media all and (max-width: 991px) {
     #img1 {display: none !important; }
