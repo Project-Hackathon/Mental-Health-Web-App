@@ -13,7 +13,7 @@ class Contact(models.Model):
     message = models.TextField(max_length=1000)
 
 class Storeblog(models.Model):
-    owner = models.ForeignKey('User', on_delete=models.CASCADE, related_name="blogowner")
+    owner = models.CharField(max_length=500)
     header = models.CharField(max_length=255)
     short = models.CharField(max_length=500)
     data = models.TextField(max_length=5000)

@@ -97,11 +97,12 @@ def readblog(request, blogid):
 def blog(request):
     if request.method == 'POST':
         data = json.loads(request.body)
+        owner = data.get('owner')
         header = data.get('header')
         shortdesc = data.get('shortdesc')
         blogdata = data.get('blogdata')
         new = Storeblog(
-            owner= request.user,
+            owner= owner,
             header=  header,
             short= shortdesc,
             data= blogdata
